@@ -4,11 +4,20 @@
   Ürün bulunamadı!
 </div>
 </ng-template>
+<form>
+  <div class="form-group">
+    <input [(ngModel)]="filterText"
+           class="form-control"
+           id="productName"
+           placeholder="Search Products..."
+    />
+    </div>
+</form>
 <div class="row">
-  <div *ngFor="let product of products" class="card" style="width: 18rem;">
+  <div *ngFor="let product of products | productFilter:filterText" class="card" style="width: 17rem;">
     <img [src]="product.imageUrl" class="card-img-top" alt="card image cap">
     <div class="card-body">
-      <h5 class="card-title">{{product.name}} <br>{{product.price}} ₺<br></h5>
+      <h5 class="card-title">{{product.name}} <br>{{product.price | currency: '₺'}} <br></h5>
       <p class="card-text">{{product.description}}</p>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
